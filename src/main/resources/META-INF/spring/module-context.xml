@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:batch="http://www.springframework.org/schema/batch"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch 
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+	<batch:job id="myjob">
+		<batch:step id="step1">			
+			<batch:tasklet transaction-manager="transactionManager4batch"  >
+				<batch:chunk reader="jdbcItemReader" writer="jdbcItemWriter" processor="myprocessor" commit-interval="1" chunk-completion-policy=""/>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	
+</beans>
